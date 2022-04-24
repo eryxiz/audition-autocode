@@ -14,10 +14,11 @@
 > ตัว exe อาจจะมีติดสแกนไวรัสบ้าง แต่ไม่มีอะไรแอบแฝงแน่นอน
 
 ### How to Install?
-----
+```
 หากใช้งานโปรแกรมไม่ได้ โหลดตัว [chromedrive] ให้ตรงกับ chrome version ของท่าน
-  - เข้าไปที่ Chrome > Setting > About Chrome แล้วเช็ค Version ของ Chrome
-  - เข้าไปที่ https://chromedriver.chromium.org/downloads โหลด chrome driver ให้ตรงกับ version ของ Chrome
+  * เข้าไปที่ Chrome > Setting > About Chrome แล้วเช็ค Version ของ Chrome
+  * เข้าไปที่ https://chromedriver.chromium.org/downloads โหลด chrome driver ให้ตรงกับ version ของ Chrome
+```
 
 - ติดตั้ง Python 3 (https://www.python.org/)
 - Download ไฟล์ py มาจากใน GitHub ละทำการแตกไฟล์
