@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from time import process_time
 from rich import print
 from rich.console import Console
@@ -55,36 +56,36 @@ with console.status("[bold green] ระบบกำลังทำการเ�
     for code_round in range(len(itemcode)):
         driver.implicitly_wait(1)
         ## Step 1 :: กดปุ่ม PlayID Login
-        playid_btn = driver.find_element_by_id("ContentPlaceHolder1_imbPlayID")
+        playid_btn = driver.find_element(By.ID, "ContentPlaceHolder1_imbPlayID")
         playid_btn.click()
         ## Step 2 :: ส่งค่า id password แล้วล็อคอิน
-        playid_id = driver.find_element_by_id("ContentPlaceHolder1_txtUserLogin")
+        playid_id = driver.find_element(By.ID, "ContentPlaceHolder1_txtUserLogin")
         playid_id.send_keys(userid)
-        playid_pwd = driver.find_element_by_id("ContentPlaceHolder1_txtUserPwd")
+        playid_pwd = driver.find_element(By.ID, "ContentPlaceHolder1_txtUserPwd")
         playid_pwd.send_keys(userpwd)
-        playid_login_btn = driver.find_element_by_id("ContentPlaceHolder1_btnSubmit")
+        playid_login_btn = driver.find_element(By.ID, "ContentPlaceHolder1_btnSubmit")
         playid_login_btn.click()
         ## Step 3 :: กรอกไอเท็มโค้ด และ logout ออก
         driver.implicitly_wait(1)
-        code_box = driver.find_element_by_id("ContentPlaceHolder1_tbvalidatecode")
+        code_box = driver.find_element(By.ID, "ContentPlaceHolder1_tbvalidatecode")
         code_box.send_keys(itemcode[count])
         count = count + 1
-        submit_code = driver.find_element_by_id("ContentPlaceHolder1_IMBTEvent")
+        submit_code = driver.find_element(By.ID, "ContentPlaceHolder1_IMBTEvent")
         submit_code.click()
-        error_check = driver.find_elements_by_id("ContentPlaceHolder1_divError")
+        error_check = driver.find_elements(By.ID, "ContentPlaceHolder1_divError")
         task_round, task_itemcode = code_round+1, itemcode[count-1]
         if(error_check):
-            msg_show = driver.find_element_by_id("ContentPlaceHolder1_msgShow").text
-            logout_btn = driver.find_element_by_id("ContentPlaceHolder1_imbntBack")
+            msg_show = driver.find_element(By.ID, "ContentPlaceHolder1_msgShow").text
+            logout_btn = driver.find_element(By.ID, "ContentPlaceHolder1_imbntBack")
             logout_btn.click()
             console.log(f"{task_round} เติมโค้ด [red]{task_itemcode}[/red] ล้มเหลว ❌ ({str(msg_show)})")
             failed_count = failed_count + 1
         else:
-            item_name = driver.find_element_by_id("ContentPlaceHolder1_lbitemvale").text
+            item_name = driver.find_element(By.ID, "ContentPlaceHolder1_lbitemvale").text
             console.log(f"{task_round} เติมโค้ด [green]{task_itemcode}[/green] เสร็จสิ้นแล้ว ✔️ ได้รับไอเท็ม [yellow]{item_name}[/yellow]")
             success_count = success_count + 1
             driver.implicitly_wait(1)
-            logout_btn = driver.find_element_by_id("ContentPlaceHolder1_ImBTClick")
+            logout_btn = driver.find_element(By.ID, "ContentPlaceHolder1_ImBTClick")
             logout_btn.click()
 
 t1_stop = process_time()
